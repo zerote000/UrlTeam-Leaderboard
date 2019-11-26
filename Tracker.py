@@ -49,7 +49,6 @@ def process_data():
             lifetime_df = pd.DataFrame.from_dict(lifetime).T
             if args.foundlinks:
                 lifetime_df['found'] = lifetime_df[0]
-            lifetime_db = lifetime_df.drop(0, axis=1)
             lifetime_df['scanned'] = lifetime_df[1]
             lifetime_df['scans_last_hour'] = 0
             lifetime_df = lifetime_df.drop(1, axis=1)
@@ -181,15 +180,14 @@ def print_update():
                 string_to_print += f'{"-" * spacer_width}\n'
                 space_left -= 1
 
+        end_offset = 0
+        start_offset = 0
         if offset > space_left:
             end_offset = 0
             start_offset = 1
             string_to_print += format_line(my_index)
             string_to_print += f'{"-" * spacer_width}\n'
             space_left -= 1
-        elif offset >= 1 and offset <= space_left:
-            end_offset = 0
-            start_offset = 0
         elif offset < 1:
             end_offset = -1
             start_offset = 0
