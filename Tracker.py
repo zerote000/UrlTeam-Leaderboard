@@ -51,7 +51,7 @@ def process_data():
                 lifetime_df['found'] = lifetime_df[0]
             lifetime_df['scanned'] = lifetime_df[1]
             lifetime_df['scans_last_hour'] = 0
-            lifetime_df = lifetime_df.drop(1, axis=1)
+            lifetime_df = lifetime_df.drop([0, 1], axis=1)
 
             live = parsed_message['live']
 
